@@ -11,7 +11,60 @@ namespace ElibraryManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                if (Session["role"].Equals(""))
+                {
+                    LinkButton1.Visible = true; //user login link button
+                    LinkButton2.Visible = true; //user sign up link button
 
+                    LinkButton3.Visible = false; //user logout link button
+                    LinkButton7.Visible = false; //Hello user link button
+
+                    LinkButton6.Visible = true; //Admin Login link button
+                    LinkButton11.Visible = false; //Author Management link button
+                    LinkButton12.Visible = false; //Publisher Management link button
+                    LinkButton8.Visible = false; //Book Inventory link button
+                    LinkButton9.Visible = false; //Book Issuing  link button
+                    LinkButton10.Visible = false; //Member Management  link button
+                }
+                else if (Session["role"].Equals("user"))
+                {
+                    LinkButton1.Visible = false; //user login link button
+                    LinkButton2.Visible = false; //user sign up link button
+
+                    LinkButton3.Visible = true; //user logout link button
+                    LinkButton7.Visible = true; //Hello user link button
+                    LinkButton7.Text = "Hello "+ Session["username"].ToString(); //Hello user welcome button
+
+                    LinkButton6.Visible = true; //Admin Login link button
+                    LinkButton11.Visible = false; //Author Management link button
+                    LinkButton12.Visible = false; //Publisher Management link button
+                    LinkButton8.Visible = false; //Book Inventory link button
+                    LinkButton9.Visible = false; //Book Issuing  link button
+                    LinkButton10.Visible = false; //Member Management  link button
+                }
+                else if (Session["role"].Equals("admin"))
+                {
+                    LinkButton1.Visible = false; //user login link button
+                    LinkButton2.Visible = false; //user sign up link button
+
+                    LinkButton3.Visible = true; //user logout link button
+                    LinkButton7.Visible = true; //Hello user link button
+                    LinkButton7.Text = "Hello Admin"; //Hello user welcome button
+
+                    LinkButton6.Visible = false; //Admin Login link button
+                    LinkButton11.Visible = true; //Author Management link button
+                    LinkButton12.Visible = true; //Publisher Management link button
+                    LinkButton8.Visible = true; //Book Inventory link button
+                    LinkButton9.Visible = true; //Book Issuing  link button
+                    LinkButton10.Visible = true; //Member Management  link button
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         protected void LinkButton6_Click(object sender, EventArgs e)
@@ -62,6 +115,25 @@ namespace ElibraryManagement
         protected void LinkButton7_Click(object sender, EventArgs e)
         {
             Response.Redirect("userprofile.aspx");
+        }
+
+        protected void LinkButton3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(!Session["username"].Equals(""))
+                {
+                    Session["username"] = "";
+                    Session["fullname"] = "";
+                    Session["role"] = "";
+                    Session["status"] = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+            Response.Redirect("homepage.aspx");
         }
     }
 }

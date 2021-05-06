@@ -37,19 +37,19 @@
                                 <center>
                                     <div class="col">
                                         <div class="form-group">
-                                            <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" placeholder="Member ID"></asp:TextBox>
+                                            <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" ></asp:TextBox>
                                         </div>
 
                                         <div class="form-group">
-                                            <asp:TextBox CssClass="form-control" ID="TextBox2" runat="server" placeholder="Password" TextMode="Password"></asp:TextBox>
+                                            <asp:TextBox CssClass="form-control" ID="TextBox2" runat="server" TextMode="Password"></asp:TextBox>
                                         </div>
 
                                         <div class="form-group">
-                                            <asp:Button ID="Button1" class="btn btn-success btn-block btn-lg" runat="server" Text="Login"></asp:Button>
+                                            <asp:Button ID="Button1" CssClass="btn btn-success btn-block btn-lg" runat="server" Text="Login" OnClick="Button1_Click"></asp:Button>
                                         </div>
 
                                         <div class="form-group">
-                                            <asp:Button ID="Button2" class="btn btn-primary btn-block btn-lg" runat="server" Text="Sign Up"></asp:Button>
+                                            <asp:Button ID="Button2" CssClass="btn btn-primary btn-block btn-lg" runat="server" Text="Sign Up" OnClick="Button2_Click"></asp:Button>
                                         </div>
 
                                     </div>

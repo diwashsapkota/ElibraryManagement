@@ -68,7 +68,7 @@
                             <div class="col-md-4">
                                 <label>State</label>
                                 <div class="form-group">
-                                    <asp:DropDownList class="form-control" ID="DropDownList1" runat="server">
+                                    <asp:DropDownList CssClass="form-control" ID="DropDownList1" runat="server">
                                         <asp:ListItem Text="State 1" Value="State 1" />
                                         <asp:ListItem Text="State 2" Value="State 2" />
                                         <asp:ListItem Text="Bagmati" Value="Bagmati" />
@@ -132,7 +132,7 @@
 
                        </div>
                     <div class="form-group">
-                        <asp:Button class="btn btn-success btn-block btn-lg" ID="Button1" runat="server" Text="Sign Up" OnClick="Button1_Click" />
+                        <asp:Button CssClass="btn btn-success btn-block btn-lg" ID="Button1" runat="server" Text="Sign Up" OnClick="Button1_Click" />
                     </div>
                     </div>
                 <br />

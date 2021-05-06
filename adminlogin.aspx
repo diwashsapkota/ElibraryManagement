@@ -37,7 +37,7 @@
                                 <center>
                                     <div class="col">
                                         <div class="form-group">
-                                            <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" placeholder="Email" TextMode="Email"></asp:TextBox>
+                                            <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" placeholder="Username" TextMode="SingleLine"></asp:TextBox>
                                         </div>
 
                                         <div class="form-group">
@@ -45,7 +45,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <asp:Button ID="Button1" class="btn btn-success btn-block btn-lg" runat="server" Text="Login"></asp:Button>
+                                            <asp:Button ID="Button1" class="btn btn-success btn-block btn-lg" runat="server" Text="Login" OnClick="Button1_Click"></asp:Button>
                                         </div>
 
                                     </div>

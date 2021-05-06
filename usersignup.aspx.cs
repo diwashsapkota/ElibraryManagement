@@ -24,6 +24,51 @@ namespace ElibraryManagement
         // sign up button click event
         protected void Button1_Click(object sender, EventArgs e)
         {
+            if(CheckMemberExists())
+            {
+                Response.Write("<script>alert('UserId already exists. Type another one');</script>");
+            }
+            else
+            {
+                SignUpNewUser();
+            }
+        }
+
+        //user-defined Method
+        bool CheckMemberExists()
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(strcon);
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+
+                SqlCommand cmd = new SqlCommand("SELECT * FROM member_master_tbl WHERE member_id = '"+TextBox3.Text.Trim()+"' ", con);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                if(dt.Rows.Count >= 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script> alert('" + ex.Message + "'); </script>");
+                return false;
+            }
+        }
+
+        //user-defined method
+        void SignUpNewUser()
+        {
             try
             {
                 SqlConnection con = new SqlConnection(strcon);
@@ -34,10 +79,10 @@ namespace ElibraryManagement
 
                 SqlCommand cmd = new SqlCommand("INSERT INTO member_master_tbl (full_name, dob, mobile_no, email, state, city, postal_code, full_address, user_id, password, account_status) VALUES (@full_name, @dob, @mobile_no, @email, @state, @city, @postal_code, @full_address, @user_id, @password, @account_status)", con);
 
-                var salt = "";
-                var hashedPassword = "";
-                salt = Crypto.GenerateSalt();
-                hashedPassword = Crypto.HashPassword(salt + TextBox10.Text);
+                //var salt = "";
+                //var hashedPassword = "";
+                //salt = Crypto.GenerateSalt();
+                //hashedPassword = Crypto.HashPassword(salt + TextBox10.Text);
 
                 cmd.Parameters.AddWithValue("@full_name", TextBox3.Text.Trim());
                 cmd.Parameters.AddWithValue("@dob", TextBox4.Text.Trim());
@@ -48,7 +93,7 @@ namespace ElibraryManagement
                 cmd.Parameters.AddWithValue("@postal_code", TextBox11.Text.Trim());
                 cmd.Parameters.AddWithValue("@full_address", TextBox7.Text.Trim());
                 cmd.Parameters.AddWithValue("@user_id", TextBox9.Text.Trim());
-                cmd.Parameters.AddWithValue("@password", hashedPassword);
+                cmd.Parameters.AddWithValue("@password", TextBox10.Text.Trim());
                 cmd.Parameters.AddWithValue("@account_status", "pending");
 
                 cmd.ExecuteNonQuery();
