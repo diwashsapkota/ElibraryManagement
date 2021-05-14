@@ -36,7 +36,7 @@
                             <div class="col-md-6">
                                 <label>Full Name</label>
                                 <div class="form-group">
-                                    <asp:TextBox CssClass="form-control" ID="TextBox3" runat="server" placeholder="Full Name"></asp:TextBox>
+                                    <asp:TextBox CssClass="form-control" ID="TextBox3" required="true" runat="server" placeholder="Full Name" ></asp:TextBox>
                                 </div>
                             </div>
 
@@ -129,11 +129,12 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <asp:Button CssClass="btn btn-success btn-block btn-lg" ID="Button1" runat="server" Text="Sign Up" OnClick="Button1_Click" />
+                         </div>
 
                        </div>
-                    <div class="form-group">
-                        <asp:Button CssClass="btn btn-success btn-block btn-lg" ID="Button1" runat="server" Text="Sign Up" OnClick="Button1_Click" />
-                    </div>
+                    
                     </div>
                 <br />
                 <a href="homepage.aspx"> << Back to Home</a><br /><br />

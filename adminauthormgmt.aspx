@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="adminauthormgmt.aspx.cs" Inherits="ElibraryManagement.adminauthormgmt" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script>
+        $(document).ready(function () {
+            $('.table').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable();
+        });
+    </script>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <div class="container-fluid">
@@ -39,7 +45,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <asp:TextBox CssClass="form-control" ID="TextBox3" runat="server" placeholder="ID"></asp:TextBox> 
-                                        <asp:Button CssClass="btn btn-primary" runat="server" ID="Button1" Text="Go" OnClick="Button1_Click" ></asp:Button>
+                                        <asp:Button CssClass="btn btn-primary ml-1" runat="server" ID="Button1" Text="Go" OnClick="Button1_Click" ></asp:Button>
                                     </div>
                                 </div>
                             </div>
@@ -70,15 +76,15 @@
 
                         <div class="row">
                             <div class="col-4">
-                                <asp:Button class="btn btn-success btn-block btn-lg" ID="Button2" text="Add" runat="server" OnClick="Button2_Click" />
+                                <asp:Button CssClass="btn btn-success btn-block btn-lg" ID="Button2" text="Add" runat="server" OnClick="Button2_Click" />
                             </div>
 
                             <div class="col-4">
-                                <asp:Button class="btn btn-primary btn-block btn-lg" ID="Button3" text="Update" runat="server" OnClick="Button3_Click" />
+                                <asp:Button CssClass="btn btn-primary btn-block btn-lg" ID="Button3" text="Update" runat="server" OnClick="Button3_Click" />
                             </div>
 
                             <div class="col-4">
-                                <asp:Button class="btn btn-danger btn-block btn-lg" ID="Button4" text="Delete" runat="server" OnClick="Button4_Click" />
+                                <asp:Button CssClass="btn btn-danger btn-block btn-lg" ID="Button4" text="Delete" runat="server" OnClick="Button4_Click" />
                             </div>
                         </div>
 

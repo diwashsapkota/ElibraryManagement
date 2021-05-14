@@ -63,7 +63,7 @@ namespace ElibraryManagement
             }
             catch (Exception ex)
             {
-
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
 
@@ -121,13 +121,24 @@ namespace ElibraryManagement
         {
             try
             {
-                if(!Session["username"].Equals(""))
-                {
-                    Session["username"] = "";
-                    Session["fullname"] = "";
-                    Session["role"] = "";
-                    Session["status"] = "";
-                }
+                Session["username"] = "";
+                Session["fullname"] = "";
+                Session["role"] = "";
+                Session["status"] = "";
+
+                LinkButton1.Visible = true; //user login link button
+                LinkButton2.Visible = true; //user sign up link button
+
+                LinkButton3.Visible = false; //user logout link button
+                LinkButton7.Visible = false; //Hello user link button
+
+                LinkButton6.Visible = true; //Admin Login link button
+                LinkButton11.Visible = false; //Author Management link button
+                LinkButton12.Visible = false; //Publisher Management link button
+                LinkButton8.Visible = false; //Book Inventory link button
+                LinkButton9.Visible = false; //Book Issuing  link button
+                LinkButton10.Visible = false; //Member Management  link button
+
             }
             catch (Exception ex)
             {

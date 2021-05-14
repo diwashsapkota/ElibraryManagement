@@ -91,6 +91,8 @@
     <Content Include="adminlogin.aspx" />
     <Content Include="adminpublishermgmt.aspx" />
     <Content Include="adminmembermgmt.aspx" />
+    <Content Include="book_inventory\books1.png" />
+    <Content Include="book_inventory\onwingsofeagledove.jpg" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\jquery.slim.min.js" />

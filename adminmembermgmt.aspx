@@ -1,6 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="adminmembermgmt.aspx.cs" Inherits="ElibraryManagement.adminusermgmt" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="adminmembermgmt.aspx.cs" Inherits="ElibraryManagement.adminmembermgmt" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script>
+        $(document).ready(function () {
+            $('.table').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable();
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">
@@ -39,7 +44,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <asp:TextBox CssClass="form-control " ID="TextBox3" runat="server" placeholder="ID"></asp:TextBox>
-                                        <asp:LinkButton class="btn btn-primary ml-1" ID="LinkButton5" runat="server"><i class="fas fa-check-circle"></i></asp:LinkButton>&nbsp;
+                                        <asp:LinkButton CssClass="btn btn-primary ml-1 text-center" ID="LinkButton5" runat="server" OnClick="LinkButton5_Click" ><i class="fas fa-check-circle"></i></asp:LinkButton>&nbsp;
                                     </div>
                                 </div>
                             </div>
@@ -54,11 +59,11 @@
                             <div class="col-md-5">
                                 <label>Account Status</label>
                                 <div class="form-group">
-                                    <div class="input-group">
+                                    <div class="input-group text-center">
                                         <asp:TextBox CssClass="form-control" ID="TextBox7" runat="server" placeholder="Account Status" TextMode="SingleLine" ReadOnly="true"></asp:TextBox>
-                                        <asp:LinkButton class="btn btn-success ml-1 mr-1" ID="LinkButton1" runat="server"><i class="fas fa-check-circle"></i></asp:LinkButton>
-                                        <asp:LinkButton class="btn btn-warning mr-1" ID="LinkButton2" runat="server"><i class="far fa-pause-circle"></i></asp:LinkButton>
-                                        <asp:LinkButton class="btn btn-danger" ID="LinkButton3" runat="server"><i class="fas fa-times-circle"></i></asp:LinkButton>
+                                        <asp:LinkButton CssClass="btn btn-success ml-1 mr-1" ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" ><i class="fas fa-check-circle"></i></asp:LinkButton>
+                                        <asp:LinkButton CssClass="btn btn-warning mr-1" ID="LinkButton2" runat="server" OnClick="LinkButton2_Click" ><i class="far fa-pause-circle"></i></asp:LinkButton>
+                                        <asp:LinkButton CssClass="btn btn-danger" ID="LinkButton3" runat="server" OnClick="LinkButton3_Click" ><i class="fas fa-times-circle"></i></asp:LinkButton>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +74,7 @@
                             <div class="col-md-4">
                                 <label>DOB</label>
                                 <div class="form-group">
-                                        <asp:TextBox CssClass="form-control fw-light" ID="TextBox1" runat="server" placeholder="mm/dd/yyyy"  ReadOnly="true" TextMode="Date"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control fw-light" ID="TextBox1" runat="server" placeholder="mm/dd/yyyy"  ReadOnly="true"></asp:TextBox>
                                 </div>
                             </div>
 
@@ -124,7 +129,7 @@
 
                         <div class="row">
                             <div class="col-12 mx-auto">
-                                <asp:Button class="btn btn-danger btn-block btn-lg" ID="Button2" text="Delete User Permanently" runat="server" />
+                                <asp:Button CssClass="btn btn-danger btn-block btn-lg" ID="Button2" text="Delete User Permanently" runat="server" OnClick="Button2_Click" />
                             </div>
                         </div>
 
@@ -142,7 +147,7 @@
                         <div class="row">
                             <div class="col">
                                 <center>
-                                    <h4>Issued Book List</h4>
+                                    <h4>Members List</h4>
                                 </center>
                             </div>
                         </div>
@@ -154,10 +159,19 @@
                         </div>
 
                         <div class="row">
-                            <div class="col">
-                                <asp:GridView CssClass="table table-striped table-bordered" ID="GridView1" runat="server"></asp:GridView>
-                            </div>
-                        </div>
+                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:elibraryDBConnectionString %>" SelectCommand="SELECT * FROM [member_master_tbl]"></asp:SqlDataSource>
+                     <div class="col">
+                        <asp:GridView CssClass="table table-striped table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="user_id" DataSourceID="SqlDataSource1">
+                           <Columns>
+                              <asp:BoundField DataField="user_id" HeaderText="ID" ReadOnly="True" SortExpression="user_id"  />
+                              <asp:BoundField DataField="full_name" HeaderText="Name" SortExpression="full_name" />
+                               <asp:BoundField DataField="account_status" HeaderText="A/C Status" SortExpression="account_status" />
+                              <asp:BoundField DataField="email" HeaderText="Email" SortExpression="email" />
+                              <asp:BoundField DataField="full_address" HeaderText="Address" SortExpression="full_address" />
+                           </Columns>
+                        </asp:GridView>
+                     </div>
+                  </div>
 
                     </div>
 

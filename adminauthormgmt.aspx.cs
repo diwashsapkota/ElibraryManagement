@@ -60,7 +60,7 @@ namespace ElibraryManagement
         //GO Button
         protected void Button1_Click(object sender, EventArgs e)
         {
-
+            GetAuthorById();
         }
 
         //user-defined function
@@ -137,7 +137,7 @@ namespace ElibraryManagement
                 SqlCommand cmd = new SqlCommand("DELETE FROM author_master_tbl WHERE author_id = '" + TextBox3.Text.Trim() + "'", con);
 
 
-                cmd.Parameters.AddWithValue("@id", TextBox3.Text.Trim());
+                //cmd.Parameters.AddWithValue("@id", TextBox3.Text.Trim());
                 //cmd.Parameters.AddWithValue("@name", TextBox4.Text.Trim());
                 //cmd.Parameters.AddWithValue("mobile", TextBox1.Text.Trim());
                 //cmd.Parameters.AddWithValue("@email", TextBox2.Text.Trim());
@@ -191,6 +191,39 @@ namespace ElibraryManagement
             TextBox2.Text = "";
             TextBox3.Text = "";
             TextBox4.Text = "";
+        }
+
+        void GetAuthorById()
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(strcon);
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+
+                SqlCommand cmd = new SqlCommand("SELECT * FROM author_master_tbl WHERE author_id = '" + TextBox3.Text.Trim() + "' ", con);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                if (dt.Rows.Count >= 1)
+                {
+                    TextBox4.Text = dt.Rows[0][1].ToString();
+                    TextBox1.Text = dt.Rows[0][2].ToString();
+                    TextBox2.Text = dt.Rows[0][3].ToString();
+                }
+                else
+                {
+                    Response.Write("<script> alert('Author does not exist in the database'); </script>");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script> alert('" + ex.Message + "'); </script>");
+                
+            }
         }
     }
 }

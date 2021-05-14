@@ -28,10 +28,6 @@ namespace ElibraryManagement
                     con.Open();
                 }
 
-                //var salt = "";
-                //var hashedPassword = "";
-                //salt = Crypto.GenerateSalt();
-                //hashedPassword = Crypto.HashPassword(salt + TextBox2.Text);
                 SqlCommand cmd = new SqlCommand("SELECT * FROM admin_login_tbl WHERE username = '" + TextBox1.Text.Trim() + "' AND password= '" + TextBox2.Text.Trim() + "'", con);
                 SqlDataReader sdr = cmd.ExecuteReader();
                 if (sdr.HasRows)
