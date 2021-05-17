@@ -50,7 +50,7 @@ namespace ElibraryManagement
                     LinkButton2.Visible = false; //user sign up link button
 
                     LinkButton3.Visible = true; //user logout link button
-                    LinkButton7.Visible = true; //Hello user link button
+                    LinkButton7.Visible = false; //Hello user link button
                     LinkButton7.Text = "Hello Admin"; //Hello user welcome button
 
                     LinkButton6.Visible = false; //Admin Login link button
@@ -99,7 +99,7 @@ namespace ElibraryManagement
 
         protected void LinkButton4_Click(object sender, EventArgs e)
         {
-           /// Response.Redirect("viewbooks.aspx");
+           Response.Redirect("viewbooks.aspx");
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)
